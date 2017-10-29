@@ -6,8 +6,8 @@ import com.sun.jna.Native;
 public class NlpirTest
 {
 	static final String NLPIR_Library_basePath = "D:\\Codes\\NLPIR-ICTCLAS";
-	public interface CLibrary extends Library {
-		CLibrary Instance = (CLibrary) Native.loadLibrary("NLPIR", CLibrary.class);
+	public interface NLPIRLibrary extends Library {
+		NLPIRLibrary Instance = (NLPIRLibrary) Native.loadLibrary("NLPIR", NLPIRLibrary.class);
 		public int NLPIR_Init(byte[] sDataPath, int encoding, byte[] sLicenceCode);
 		public String NLPIR_ParagraphProcess(String sSrc, int bPOSTagged);
 		public String NLPIR_GetKeyWords(String sLine, int nMaxKeyLimit, boolean bWeightOut);
@@ -19,10 +19,10 @@ public class NlpirTest
 	{
 		//com.sun.jna.NativeLibrary.addSearchPath("NLPIR", "D:\\Codes\\汉语分词20140928\\bin\\ICTCLAS2015");
 		System.setProperty("jna.library.path", NLPIR_Library_basePath+"\\lib\\win64");
-		int init_flag = CLibrary.Instance.NLPIR_Init(NLPIR_Library_basePath.getBytes("UTF-8"), 1, "0".getBytes("UTF-8"));
+		int init_flag = NLPIRLibrary.Instance.NLPIR_Init(NLPIR_Library_basePath.getBytes("UTF-8"), 1, "0".getBytes("UTF-8"));
 		if(0 == init_flag)
 		{
-			String nativeBytes = CLibrary.Instance.NLPIR_GetLastErrorMsg();
+			String nativeBytes = NLPIRLibrary.Instance.NLPIR_GetLastErrorMsg();
 			System.err.println("初始化失败！fail reason is "+nativeBytes);
 			System.err.println("Error initializing NLPIR.");
 		}
@@ -30,9 +30,9 @@ public class NlpirTest
 		String nativeBytes;
 		try
 		{
-			nativeBytes = CLibrary.Instance.NLPIR_ParagraphProcess(sInput, 1);
+			nativeBytes = NLPIRLibrary.Instance.NLPIR_ParagraphProcess(sInput, 1);
 			int nCountKey = 0;
-			CLibrary.Instance.NLPIR_Exit();
+			NLPIRLibrary.Instance.NLPIR_Exit();
 		}
 		catch(Exception ex)
 		{
