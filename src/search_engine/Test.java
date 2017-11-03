@@ -3,14 +3,17 @@ package search_engine;
 import java.io.File;
 import java.io.IOException;
 
+import org.apache.lucene.queryparser.classic.ParseException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 public class Test {
 
-	public static void main(String[] args) throws IOException {
-		//init NLPIR
-		
+	public static void main(String[] args) throws IOException, ParseException {
+		// IndexTools.makeIndex();
+		// test searcher
+		Searcher searcher = new Searcher();
+		searcher.search("联合国对极端武装在叙利亚", 10);
 		
 	}
 
@@ -18,7 +21,7 @@ public class Test {
 
 class GlobalTest
 {
-	public static void main(String[] args) throws IOException
+	public static void test_jsoup(String[] args) throws IOException
 	{
 		// TODO test the behavior of jsoup
 				File test_input = new File(IndexTools.doc_path+"\\test.txt");

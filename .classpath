@@ -2,10 +2,15 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_144"/>
-	<classpathentry kind="lib" path="E:/软件/lucene-7.0.0/lucene-7.0.0/core/lucene-core-7.0.0.jar"/>
+	<classpathentry kind="lib" path="E:/软件/lucene-7.0.0/lucene-7.0.0/core/lucene-core-7.0.0.jar" sourcepath="D:/Codes/lucene-7.0.0-src/lucene-7.0/lucene-7.0.0">
+		<attributes>
+			<attribute name="source_encoding" value="UTF-8"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="D:/Green App/java_tools/jsoup/jsoup-1.10.3.jar"/>
 	<classpathentry kind="lib" path="D:/Green App/java_tools/jsoup/jsoup-1.10.3-javadoc.jar"/>
 	<classpathentry kind="lib" path="D:/Green App/java_tools/jsoup/jsoup-1.10.3-sources.jar"/>
 	<classpathentry kind="lib" path="D:/Green App/java_tools/jna/jna-4.5.0.jar"/>
+	<classpathentry kind="lib" path="E:/软件/lucene-7.0.0/lucene-7.0.0/queryparser/lucene-queryparser-7.0.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

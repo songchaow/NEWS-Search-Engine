@@ -10,9 +10,8 @@ import java.util.regex.Pattern;
 import search_engine.NlpirTest.NLPIRLibrary;
 
 public class ParseTool {
-	public ParseTool(Reader reader) throws UnsupportedEncodingException
+	public ParseTool() throws UnsupportedEncodingException
 	{
-		input = reader;
 		// setup the JNA and call `init`
 		System.setProperty("jna.library.path", NLPIR_Library_basePath+"\\lib\\win64");
 		int init_flag = NLPIRLibrary.Instance.NLPIR_Init(NLPIR_Library_basePath.getBytes("UTF-8"), 1, "0".getBytes("UTF-8"));
@@ -54,6 +53,15 @@ public class ParseTool {
 		return curr_len;
 	}
 	
+	public void reset()
+	{
+		// clear nativeByts, so `init` will be called for a different context.
+		nativeBytes = null;
+		curr_len = 0;
+		curr_offset = 0;
+		curr_text = null;
+	}
+	
 	public boolean getNextToken() throws IOException
 	{
 		if(nativeBytes == null)
@@ -74,9 +82,15 @@ public class ParseTool {
 		}
 			
 	}
+	public void setInput(Reader reader)
+	{
+		// the reader is reset just before `incrementToken` is called, so we pass the proper reader before parsing
+		// not at the constructing time.
+		input = reader;
+	}
 	public void init() throws IOException
 	{
-		// get text from reader, and parse it.
+		// get text from reader, and parse it using NLPIR library.
 		// use string builder to avoid unnecessary string creation.
 		StringBuilder builder = new StringBuilder();
 		int charsRead = -1;
@@ -90,7 +104,7 @@ public class ParseTool {
 		String text = builder.toString();
 		// now analyze the text use NLPIR
 		nativeBytes = NLPIRLibrary.Instance.NLPIR_ParagraphProcess(text, 1);
-		word_pattern = Pattern.compile("(\\w+?)/[a-z]+");
+		word_pattern = Pattern.compile("(\\p{L}+?)/[a-z]+");
 		m = word_pattern.matcher(nativeBytes);
 	}
 		
