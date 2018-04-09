@@ -28,7 +28,7 @@ import org.apache.lucene.index.IndexWriterConfig;
 
 public class IndexTools {
 	static int i=0;
-	static final String index_path = "index";
+	static final String index_path = "D:\\CLASSPATH\\search_engine\\index";
 	static final String doc_path = "E:\\projects\\search_engine\\data";
 	static String removeRubbish(String content)
 	{

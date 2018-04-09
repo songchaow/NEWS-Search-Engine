@@ -13,7 +13,8 @@ public class Test {
 		// IndexTools.makeIndex();
 		// test searcher
 		Searcher searcher = new Searcher();
-		searcher.search("联合国对极端武装在叙利亚", 10);
+		searcher.search("联合国", 10);
+		ResultItem[] items = searcher.getItems();
 		
 	}
 
